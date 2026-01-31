@@ -1,6 +1,4 @@
 import React from "react";
-
-
 export default function TaskHeader({ tasks }) {
   return (
     <div className="flex justify-between items-center mb-8">

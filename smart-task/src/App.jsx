@@ -1,13 +1,11 @@
-import React from 'react'
 import { useState } from "react";
-
-import Sidebar from "./components/sidebar/Sidebar";
-import TaskHeader from "./components/tasks/TaskHeader";
-import TaskForm from "./components/tasks/TaskForm";
-import TaskList from "./components/tasks/TaskList";
-import { useTasks } from "./hooks/useTasks";
-import { useProjects } from "./hooks/useProjects";
-import Header from './components/header/Header';
+import Header from "../components/header/Header";
+import Sidebar from "../components/sidebar/Sidebar";
+import TaskHeader from "../components/tasks/TaskHeader";
+import TaskForm from "../components/tasks/TaskForm";
+import TaskList from "../components/tasks/TaskList";
+import { useTasks } from "../hooks/useTasks";
+import { useProjects } from "../hooks/useProjects";
 
 export default function App() {
   const [theme, setTheme] = useState("dark");
