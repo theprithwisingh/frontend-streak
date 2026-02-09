@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* Fix: Define CSS variables that change based on theme */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --surface: #f1f5f9;
+  --border: #e5e7eb;
+} 
+
+/* Light Theme */
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #111111;
+  --surface: #f1f5f9;
+  --border: #FF6900;
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --text: #e5e7eb;
+  --surface: #000000;
+  --border: #FF6900;
+}
