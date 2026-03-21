@@ -1,51 +1,211 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import React from "react";
+// import { useForm } from "react-hook-form";
+// import { z } from "zod";
+// import { supabase } from "../api/supabaseClient";
 
+// //schema
+// const formSchema = z
+//   .object({
+//     name: z.string().min(2, "Name too short"),
+//     email: z.string().email("Invalid email"),
+//     password: z.string().min(6, "Min 6 chars"),
+//     confirmPassword: z.string().min(6),
+//   })
+//   .refine((data) => data.password === data.confirmPassword, {
+//     message: "Passwords do not match",
+//     path: ["confirmPassword"],
+//   });
+
+// const Register = () => {
+//   const {
+//     register,
+//     handleSubmit,
+//     formState: {
+//       errors,
+//       isSubmitting,
+//       isSubmitted,
+//       isSubmitSuccessful,
+//       isValid,
+//       isDirty,
+//       isLoading,
+//     },
+//   } = useForm({
+//     resolver: zodResolver(formSchema),
+//     mode: "onChange",
+//   });
+
+//   async function onSubmit(data) {
+//     try {
+//       const { email, password, name } = data;
+
+//       const { data: userData, error } = await supabase.auth.signUp({
+//         email,
+//         password,
+//         options: {
+//           data: {
+//             name, // extra user metadata
+//           },
+//         },
+//       });
+
+//       if (error) {
+//         throw error;
+//       }
+
+//       console.log("User created:", userData);
+//     } catch (err) {
+//       console.log("Signup error:", err.message);
+//     }
+//   }
+
+//   return (
+//     <form onSubmit={handleSubmit(onSubmit)}>
+//       {/* NAME */}
+//       <input placeholder="Name" {...register("name")} />
+//       {isSubmitted && errors.name && <p>{errors.name.message}</p>}
+
+//       {/* EMAIL */}
+//       <input placeholder="Email" {...register("email")} />
+//       {isSubmitted && errors.email && <p>{errors.email.message}</p>}
+
+//       {/* PASSWORD */}
+//       <input type="password" placeholder="Password" {...register("password")} />
+//       {isSubmitted && errors.password && <p>{errors.password.message}</p>}
+
+//       {/* CONFIRM PASSWORD */}
+//       <input
+//         type="password"
+//         placeholder="Confirm Password"
+//         {...register("confirmPassword")}
+//       />
+//       {isSubmitted && errors.confirmPassword && (
+//         <p>{errors.confirmPassword.message}</p>
+//       )}
+
+//       {/* BUTTON with all 3 features */}
+//       <button disabled={!isDirty || !isValid || isSubmitting}>
+//         {isSubmitting ? "Submitting..." : "Submit"}
+//       </button>
+
+//       {/* LOADING (initial data case) */}
+//       {isLoading && <p>Loading form...</p>}
+
+//       {/* SUCCESS */}
+//       {isSubmitSuccessful && <p>Success!</p>}
+
+//       {/* FAIL */}
+//       {isSubmitted && !isSubmitSuccessful && !isSubmitting && (
+//         <p>Something went wrong. Fix errors.</p>
+//       )}
+//     </form>
+//   );
+// };
+// export default Register;
+import React from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
-const signupSchema = z
+import { zodResolver } from "@hookform/resolvers/zod";
+import { supabase } from "../api/supabaseClient";
+
+// Schema
+const formSchema = z
   .object({
-    email: z.string().email(),
-    password: z.string().min(6),
-    confirmPassword: z.string(),
+    name: z.string().min(2, "Name too short"),
+    email: z.string().email("Invalid email"),
+    password: z.string().min(6, "Min 6 chars"),
+    confirmPassword: z.string().min(6),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords must match",
+    message: "Passwords do not match",
     path: ["confirmPassword"],
   });
 
 const Register = () => {
-  const { register, handleSubmit } = useForm();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      errors,
+      isSubmitting,
+      isSubmitted,
+      isValid,
+      isDirty,
+    },
+    reset,
+  } = useForm({
+    resolver: zodResolver(formSchema),
+    mode: "onChange",
+  });
 
-  async function onSubmit() {}
+  // 🔥 API states (separate from RHF)
+  const [apiError, setApiError] = React.useState("");
+  const [success, setSuccess] = React.useState(false);
+
+  async function onSubmit(data) {
+    setApiError("");
+    setSuccess(false);
+
+    const { email, password, name } = data;
+
+    const { data: userData, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { name },
+      },
+    });
+
+    if (error) {
+      setApiError(error.message);
+      return;
+    }
+
+    setSuccess(true);
+    reset(); // clear form
+  }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="name"
-          {...register("text", { required: true })}
-        />
-        <input
-          type="email"
-          placeholder="email"
-          {...register("email", { required: true })}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          {...register("password", { required: true })}
-        />
-        <input
-          type="password"
-          placeholder="confirmPassword"
-          {...register("confirmPassword", { required: true })}
-        />
-        <button type="submit">submit</button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit(onSubmit)}>
+
+      {/* NAME */}
+      <input placeholder="Name" {...register("name")} />
+      {isSubmitted && errors.name && <p>{errors.name.message}</p>}
+
+      {/* EMAIL */}
+      <input placeholder="Email" {...register("email")} />
+      {isSubmitted && errors.email && <p>{errors.email.message}</p>}
+
+      {/* PASSWORD */}
+      <input type="password" placeholder="Password" {...register("password")} />
+      {isSubmitted && errors.password && <p>{errors.password.message}</p>}
+
+      {/* CONFIRM PASSWORD */}
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        {...register("confirmPassword")}
+      />
+      {isSubmitted && errors.confirmPassword && (
+        <p>{errors.confirmPassword.message}</p>
+      )}
+
+      {/* BUTTON */}
+      <button disabled={!isDirty || !isValid || isSubmitting}>
+        {isSubmitting ? "Creating..." : "Register"}
+      </button>
+
+      {/* API ERROR (REAL ERROR) */}
+      {apiError && <p style={{ color: "red" }}>{apiError}</p>}
+
+      {/* SUCCESS (REAL SUCCESS) */}
+      {success && (
+        <p style={{ color: "green" }}>
+          Account created! Check your email (if verification is enabled).
+        </p>
+      )}
+    </form>
   );
 };
+
 export default Register;
