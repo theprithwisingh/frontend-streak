@@ -3,10 +3,9 @@ import AppRouter from './router/AppRouter'
 
 const App = () => {
   return (
-    <>
-    <h1>hi</h1>
+    <div className="min-h-screen bg-white text-black font-sans antialiased">
       <AppRouter/>
-    </>
+    </div>
   )
 }
 export default App;
