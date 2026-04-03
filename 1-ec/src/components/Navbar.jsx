@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { useCartStore } from '../store/useCartStore'
 import { useUIStore } from '../store/useUIStore'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Navbar() {
   const cartCount = useCartStore((state) => state.cartCount)
@@ -51,6 +52,28 @@ function Navbar() {
           </svg>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-outline-variant/20 shadow-ambient-sm z-40"
+          >
+            <div className="flex flex-col py-6 px-6 gap-6">
+              <Link to="/category/new-arrivals" className="nav-link text-lg font-medium" onClick={toggleMobileMenu}>New Arrivals</Link>
+              <Link to="/category/performance" className="nav-link text-lg font-medium" onClick={toggleMobileMenu}>Performance</Link>
+              <Link to="/category/lifestyle" className="nav-link text-lg font-medium" onClick={toggleMobileMenu}>Lifestyle</Link>
+              <Link to="/category/collections" className="nav-link text-lg font-medium" onClick={toggleMobileMenu}>Collections</Link>
+              <Link to="/category/sustainability" className="nav-link text-lg font-medium" onClick={toggleMobileMenu}>Sustainability</Link>
+              <Link to="/category/journal" className="nav-link text-lg font-medium" onClick={toggleMobileMenu}>Journal</Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
