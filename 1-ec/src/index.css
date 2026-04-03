@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════
+   THEME — Design Tokens from Stitch Design System
+   ══════════════════════════════════════════════════ */
+@theme {
+  /* --- Primary Blue --- */
+  --color-primary: #003ec7;
+  --color-primary-container: #0052ff;
+  --color-primary-fixed: #dde1ff;
+  --color-primary-fixed-dim: #b7c4ff;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #dfe3ff;
+
+  /* --- Secondary --- */
+  --color-secondary: #4459a8;
+  --color-secondary-container: #95aafe;
+  --color-secondary-fixed: #dde1ff;
+
+  /* --- Tertiary (Urgency) --- */
+  --color-tertiary: #952200;
+  --color-tertiary-container: #bf3003;
+
+  /* --- Surfaces --- */
+  --color-surface: #fcf9f8;
+  --color-surface-dim: #dcd9d9;
+  --color-surface-bright: #fcf9f8;
+  --color-surface-container: #f0edec;
+  --color-surface-container-high: #ebe7e7;
+  --color-surface-container-highest: #e5e2e1;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container-lowest: #ffffff;
+
+  /* --- On Surface --- */
+  --color-on-surface: #1c1b1b;
+  --color-on-surface-variant: #434656;
+  --color-on-background: #1c1b1b;
+
+  /* --- Outline --- */
+  --color-outline: #737688;
+  --color-outline-variant: #c3c5d9;
+
+  /* --- Error --- */
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  /* --- Inverse --- */
+  --color-inverse-surface: #313030;
+  --color-inverse-on-surface: #f3f0ef;
+  --color-inverse-primary: #b7c4ff;
+
+  /* --- Typography --- */
+  --font-headline: "Inter", sans-serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+/* ══════════════════════════════════════════════════
+   BASE — Global defaults (Tailwind preflight
+   handles box-sizing, margin, padding)
+   ══════════════════════════════════════════════════ */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════════
+   CUSTOM UTILITIES — Design system primitives
+   ══════════════════════════════════════════════════ */
+
+/* --- Shadows (Ambient Occlusion style) --- */
+.shadow-ambient {
+  box-shadow: 0 24px 48px -12px rgba(28, 27, 27, 0.08);
+}
+
+.shadow-ambient-sm {
+  box-shadow: 0 12px 24px -6px rgba(28, 27, 27, 0.06);
+}
+
+/* --- Ghost Border (20% opacity outline-variant) --- */
+.ghost-border {
+  border: 1px solid rgba(195, 197, 217, 0.2);
+}
+
+/* --- Gradient CTA (135° primary → primary-container) --- */
+.gradient-cta {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+}
+
+/* --- Glassmorphism Nav --- */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* --- Label: Industrial / Technical --- */
+.label-industrial {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════
+   LAYOUT UTILITIES — Repeated layout patterns
+   ══════════════════════════════════════════════════ */
+
+/* Content container (used 9× across sections) */
+.container-main {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 1.5rem; /* px-6 */
+}
+@media (min-width: 1024px) {
+  .container-main {
+    padding-inline: 3rem; /* lg:px-12 */
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   COMPONENT UTILITIES — Repeated component patterns
+   ══════════════════════════════════════════════════ */
+
+/* Nav link (used 5× in navbar) */
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+  transition: color 300ms;
+}
+.nav-link:hover {
+  color: var(--color-on-surface);
+}
+
+/* Product card wrapper (used 9× across grids) */
+.product-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: var(--color-surface-container-lowest);
+}
+
+/* Card image hover zoom (used 9×) */
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms ease-out;
+}
+.group:hover .card-img {
+  transform: scale(1.05);
+}
+
+/* Footer link (used 6× in footer) */
+.footer-link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(243, 240, 239, 0.7); /* inverse-on-surface/70 */
+  transition: color 200ms;
+}
+.footer-link:hover {
+  color: var(--color-inverse-on-surface);
+}
+
+/* Social icon button (used 3× in footer) */
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: rgba(243, 240, 239, 0.1); /* inverse-on-surface/10 */
+  transition: background-color 200ms;
+}
+.social-btn:hover {
+  background: rgba(183, 196, 255, 0.2); /* inverse-primary/20 */
+}
+
+/* Floating badge (used 3× for glassmorphic overlays) */
+.floating-badge {
+  background: rgba(255, 255, 255, 0.9); /* surface-container-lowest/90 */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.25rem;
+}
+
+/* ══════════════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════════════ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+}
