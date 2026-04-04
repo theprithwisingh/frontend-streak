@@ -2,8 +2,8 @@ import { ArrowRight } from 'lucide-react';
 
 export default function ExploreCategories() {
   const categories = [
-    { title: "True Crime", color: "bg-hotMagenta", span: "col-span-1 md:col-span-2 row-span-2", img: "https://picsum.photos/seed/cat1/500/500" },
-    { title: "Tech", color: "bg-vibrantYellow", span: "col-span-1 border-b-4 border-l-4 md:border-b-0 border-pureBlack", img: "https://picsum.photos/seed/cat2/500/500" },
+    { title: "True Crime", color: "bg-hotMagenta", span: "col-span-1 md:col-span-2 md:row-span-2", img: "https://picsum.photos/seed/cat1/500/500" },
+    { title: "Tech", color: "bg-vibrantYellow", span: "col-span-1", img: "https://picsum.photos/seed/cat2/500/500" },
     { title: "Comedy", color: "bg-neonGreen", span: "col-span-1 md:col-span-2", img: "https://picsum.photos/seed/cat3/500/500" },
     { title: "Business", color: "bg-electricBlue", span: "col-span-1", img: "https://picsum.photos/seed/cat4/500/500" },
     { title: "Culture", color: "bg-pureBlack", textColor: "text-pureWhite", span: "col-span-1 md:col-span-2", img: "https://picsum.photos/seed/cat5/500/500" },
@@ -18,15 +18,11 @@ export default function ExploreCategories() {
           <p className="font-body text-xl font-bold mt-4 uppercase tracking-wider">Find your next addiction</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-0 border-4 border-pureBlack shadow-[8px_8px_0px_#000]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1 bg-pureBlack border-4 border-pureBlack shadow-[8px_8px_0px_#000]">
           {categories.map((cat, i) => (
              <div 
                key={i} 
-               className={`relative group overflow-hidden border-b-4 border-r-4 border-pureBlack ${cat.span} ${cat.color} min-h-[250px] cursor-pointer`}
-               style={{ 
-                  borderRightWidth: i === categories.length - 1 ? '0px' : '4px',
-                  borderBottomWidth: i >= categories.length - 2 ? '0px' : '4px' // Simplistic approximation for border removals in grid, will rely on gap-0
-               }}
+               className={`relative group overflow-hidden ${cat.span} ${cat.color} min-h-[250px] cursor-pointer`}
              >
                 {/* Fallback specific borders via standard classes on items */}
                 <div className={`absolute inset-0 border-2 border-transparent hover:border-pureWhite transition-colors z-20 pointer-events-none`}></div>

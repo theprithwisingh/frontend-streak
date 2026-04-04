@@ -23,7 +23,7 @@ export default function Hero() {
           <div className="inline-block bg-neonGreen text-pureBlack px-4 py-1 border-4 border-pureBlack w-max font-bold shadow-[4px_4px_0px_#000]">
             #1 PODCAST NETWORK
           </div>
-          <h1 className="text-6xl md:text-8xl leading-[0.9] text-pureBlack tracking-tighter drop-shadow-[4px_4px_0px_#FF00A0]">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl leading-[0.9] text-pureBlack tracking-tighter drop-shadow-[4px_4px_0px_#FF00A0]">
             BRUTAL<br />HONESTY<br />ON AIR.
           </h1>
           <p className="font-body text-xl md:text-2xl font-bold max-w-lg mt-4 bg-pureWhite p-4 border-4 border-pureBlack shadow-[6px_6px_0px_#0055FF]">
@@ -45,11 +45,11 @@ export default function Hero() {
           <img 
             src="https://picsum.photos/seed/hero/800/800" 
             alt="Host shouting into mic" 
-            className="relative z-10 w-full h-[500px] object-cover border-4 border-pureBlack grayscale contrast-150"
+            className="relative z-10 w-full h-[350px] md:h-[500px] object-cover border-4 border-pureBlack grayscale contrast-150"
           />
           {/* Badge */}
-          <div className="absolute -bottom-8 -left-8 bg-neonGreen border-4 border-pureBlack rounded-full p-4 flex items-center justify-center w-32 h-32 z-20 shadow-[4px_4px_0px_#000] animate-spin-slow">
-             <div className="text-center font-heading font-black leading-none text-xl rotate-12">
+          <div className="absolute -bottom-4 -left-4 md:-bottom-8 md:-left-8 bg-neonGreen border-4 border-pureBlack rounded-full p-4 flex items-center justify-center w-24 h-24 md:w-32 md:h-32 z-20 shadow-[4px_4px_0px_#000] animate-spin-slow">
+             <div className="text-center font-heading font-black leading-none text-base md:text-xl rotate-12">
                RAW<br/>AUDIO
              </div>
           </div>

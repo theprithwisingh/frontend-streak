@@ -16,7 +16,7 @@ export default function LatestEpisodes() {
     <section className="w-full bg-pureBlack text-pureWhite py-16 md:py-24 border-b-4 border-pureBlack">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
           <h2 className="text-6xl md:text-8xl font-heading font-black drop-shadow-[4px_4px_0px_#0055FF]">THE<br/>VAULT</h2>
           
           <div className="flex flex-wrap gap-3">

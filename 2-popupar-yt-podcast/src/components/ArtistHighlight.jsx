@@ -12,11 +12,11 @@ export default function ArtistHighlight() {
     <section className="w-full py-16 md:py-24 bg-pureWhite border-b-4 border-pureBlack">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b-8 border-pureBlack pb-8 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b-8 border-pureBlack pb-8 gap-6">
           <div>
             <h2 className="text-5xl md:text-7xl font-heading font-black text-pureBlack drop-shadow-[4px_4px_0px_#00FF00]">THE<br/>VOICES</h2>
           </div>
-          <p className="font-body font-bold text-xl uppercase tracking-widest max-w-sm text-right">
+          <p className="font-body font-bold text-xl uppercase tracking-widest max-w-sm text-left md:text-right">
             Meet the minds shaping the conversation across our network.
           </p>
         </div>
@@ -25,7 +25,7 @@ export default function ArtistHighlight() {
            {artists.map((artist, idx) => (
              <div 
                key={idx} 
-               className={`relative h-[500px] border-4 border-pureBlack group cursor-pointer ${artist.color} flex flex-col p-4 shadow-[8px_8px_0px_#000] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_#000] transition-all`}
+               className={`relative h-[400px] md:h-[500px] border-4 border-pureBlack group cursor-pointer ${artist.color} flex flex-col p-4 shadow-[8px_8px_0px_#000] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_#000] transition-all`}
              >
                 <div className="font-heading font-black text-2xl rotate-180" style={{ writingMode: 'vertical-rl' }}>
                   {artist.name}
