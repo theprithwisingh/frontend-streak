@@ -18,7 +18,9 @@ body {
   margin: 0 auto;
 }
 
-h1, p, span {
+h1,
+p,
+span {
   font-family: monospace;
   margin: 0;
   color: #000000;
@@ -92,7 +94,7 @@ button:hover {
   text-align: center;
   font-family: monospace;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
   margin-top: 20px;
 }
